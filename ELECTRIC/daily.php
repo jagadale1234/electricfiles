@@ -9,6 +9,8 @@ if(isset($_POST['submit'])){
 	if($count){
 		$username = mysqli_fetch_assoc($query);
 		$_SESSION['units'] = $_username['Units'];
+		$_SESSION['date'] = $_username['Date'];
+		$_SESSION['monthly'] = $_username['Monthly'];
 	}else{
 		echo "You are a new user";
 	}

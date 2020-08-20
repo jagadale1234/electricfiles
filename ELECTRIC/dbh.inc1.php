@@ -4,7 +4,7 @@ $dBUsername = "root";
 $dBPassword = "";
 $dBName = "daily";
 
-$con = mysqli_connect($serverame ,$dBUsername,$dBPassword,$dBName)
+$con = mysqli_connect($serverame ,$dBUsername,$dBPassword,$dBName);
 
 if($con){
 	?>

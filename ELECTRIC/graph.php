@@ -1,5 +1,8 @@
 <?php
 session_start();
+$con = mysqli_connect('localhost','root','','daily');
+$query = "SELECT * FROM dailyupdates";
+$result = mysqli_query($con , $user);
 $total = 40;
 ?>
 
@@ -12,19 +15,19 @@ $total = 40;
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Date', 'Consumption' , 'Month'],
-          ['01', 29.53505445601838 , 30],
-          ['02', 31.775344452479207 , 30],
-          ['03', 28.999524708737834, 30],
-          ['04', 33.51637949937332, 30],
-          ['05', 13.971743797080679 ,30]
+          ['Date', 'Consumption'],
+          <?php
+          	while($row = mysqli_fetch_array($result)){
+          		echo "['".$row["Date"]."', '".$row["Units"]."',"30"],";
+          	}
+          ?>
         ]);
 
         var options = {
           vAxis: {title: 'Consumption'},
           hAxis: {title: 'Date'},
           seriesType: 'bars',
-          series: {1: {type: 'line'}}    // Required for Material Bar Charts.
+          series: {2: {type: 'line'}}    // Required for Material Bar Charts.
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
@@ -40,11 +43,11 @@ $total = 40;
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Date', 'Consumption'],
-          ['01',  29.53505445601838],
-          ['02',  61.31039890849759],
-          ['03',  90.30992361723543],
-          ['04',  123.82630311660876],
-          ['05',  137.79804691368943]
+          <?php
+          	while($row = mysqli_fetch_array($result)){
+          		echo "['".$row["Date"]."', ".$row["Monthly"]."],";
+          	}
+          ?>
         ]);
 
         var options = {
